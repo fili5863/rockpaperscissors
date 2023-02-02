@@ -30,7 +30,8 @@
       <button class="scissors"></button>
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", loadPage);
+      let cumChoice;
+
       const player1 = document.querySelector("#player1");
       const player2 = document.querySelector("#player2");
       const win = document.querySelector("#win");
@@ -39,22 +40,26 @@
       const rockBtn = document.querySelector(".rock");
       const paperBtn = document.querySelector(".paper");
       const scissorsBtn = document.querySelector(".scissors");
-      function loadPage() {
-        // startGame(); Eventlistner
-      }
+      var userChoice = [rockBtn, paperBtn, scissorsBtn];
+      cumOptions = ["rock", "paper", "scissors"];
+      // Starts the game when the page is loaded
+      document.addEventListener("DOMContentLoaded", startGame);
+
+      rockBtn.addEventListener("click", gameEval);
+      paperBtn.addEventListener("click", gameEval);
+      scissorsBtn.addEventListener("click", gameEval);
 
       function startGame() {
-        computerChoice();
+        // Makes random number between 0 and 2
+
+        cumChoice = Math.floor(Math.random() * cumOptions.length);
+        console.log(cumChoice);
+
+        // userChoice();
       }
 
-      function computerChoice() {
-        // Math lort
-
-        userChoice();
-      }
-
-      function userChoice() {
-        //
+      function gameEval() {
+        console.log(userChoice.length);
       }
     </script>
   </body>
