@@ -52,13 +52,39 @@
       }
 
       function userChoice() {
-        rockBtn.addEventListener("click", gameEval);
-        paperBtn.addEventListener("click", gameEval);
-        scissorsBtn.addEventListener("click", gameEval);
+        rockBtn.addEventListener("click", chooseRock);
+        paperBtn.addEventListener("click", choosePaper);
+        scissorsBtn.addEventListener("click", chooseScissors);
       }
 
-      function gameEval() {
-        if (rockBtn)
+      function chooseRock() {
+        if (cumChoice == 0) {
+          draw.classList.remove("hidden");
+        } else if (cumChoice == 1) {
+          lose.classList.remove("hidden");
+        } else if (cumChoice == 2) {
+          win.classList.remove("hidden");
+        }
+      }
+
+      function choosePaper() {
+        if (cumChoice == 0) {
+          win.classList.remove("hidden");
+        } else if (cumChoice == 1) {
+          draw.classList.remove("hidden");
+        } else if (cumChoice == 2) {
+          lose.classList.remove("hidden");
+        }
+      }
+
+      function chooseScissors() {
+        if (cumChoice == 0) {
+          lose.classList.remove("hidden");
+        } else if (cumChoice == 1) {
+          win.classList.remove("hidden");
+        } else if (cumChoice == 2) {
+          draw.classList.remove("hidden");
+        }
       }
     </script>
   </body>
