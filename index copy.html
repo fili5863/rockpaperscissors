@@ -40,37 +40,25 @@
       const rockBtn = document.querySelector(".rock");
       const paperBtn = document.querySelector(".paper");
       const scissorsBtn = document.querySelector(".scissors");
-      // rockBtn = 0;
-      // paperBtn = 1;
-      // scissorsBtn = 2;
-
+      var userChoice = [rockBtn, paperBtn, scissorsBtn];
+      cumOptions = ["rock", "paper", "scissors"];
       // Starts the game when the page is loaded
       document.addEventListener("DOMContentLoaded", startGame);
 
+      rockBtn.addEventListener("click", gameEval);
+      paperBtn.addEventListener("click", gameEval);
+      scissorsBtn.addEventListener("click", gameEval);
+
       function startGame() {
         // Makes random number between 0 and 2
-        cumChoice = Math.floor(Math.random() * 3);
+        cumChoice = Math.floor(Math.random() * cumOptions.length);
         console.log(cumChoice);
-        userChoice();
+
+        // userChoice();
       }
 
-      // function computerChoice() {
-      //   // Math lort
-
-      //   userChoice();
-      // }
-
-      function userChoice() {
-        rockBtn.addEventListener("click", gameEval);
-        paperBtn.addEventListener("click", gameEval);
-        scissorsBtn.addEventListener("click", gameEval);
-      }
-
-      function gameEval(evt) {
-        if ((cumChoice = evt.currentTarget.classList.contains("rock"))) {
-          console.log(evt.currentTarget.classList.contains("rock"));
-          draw.classList.remove(".hidden");
-        }
+      function gameEval() {
+        console.log(userChoice.);
       }
     </script>
   </body>
