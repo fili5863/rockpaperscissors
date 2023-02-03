@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Rock, Paper, Scissors</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Rock, Paper, Scissors</h1>
+
+    <div id="gamefield">
+      <div id="player1" class="player"></div>
+      <div id="player2" class="player"></div>
+      <div id="texts">
+        <div id="lose" class="hidden"><h1>You lose</h1></div>
+        <div id="win" class="hidden"><h1>You win</h1></div>
+        <div id="draw" class="hidden"><h1>It's a draw</h1></div>
+      </div>
+    </div>
+
+    <div id="buttons">
+      <button class="rock"></button>
+      <button class="paper"></button>
+      <button class="scissors"></button>
+    </div>
+    <script>
+      "use strict";
+
+      let cumChoice;
+      let userChoice;
+
+      const player1 = document.querySelector("#player1");
+      const player2 = document.querySelector("#player2");
+      const win = document.querySelector("#win");
+      const lose = document.querySelector("#lose");
+      const draw = document.querySelector("#draw");
+      const rockBtn = document.querySelector(".rock");
+      const paperBtn = document.querySelector(".paper");
+      const scissorsBtn = document.querySelector(".scissors");
+
+      // Starts the game when the page is loaded
+      document.addEventListener("DOMContentLoaded", startGame);
+
+      function startGame() {
+        document.querySelectorAll("#buttons button").forEach(elm => {
+          elm.addEventListener("click", getUserSelection);
+        });
+        document.querySelector("#player1").addEventListener("animationend", handAnimEnded);
+      }
+
+      function getUserSelection() {
+        if (this.classList.contains("rock")) {
+          console.log("klik", "ROCK");
+          userChoice = "rock";
+        } else if (this.classList.contains("paper")) {
+          console.log("klik", "PAPER");
+          userChoice = "paper";
+        } else {
+          console.log("klik", "SCISSORS");
+          userChoice = "scissors";
+        }
+        makeRandomComputerChoice();
+      }
+
+      // reset() {
+      //   makeRandomComputerChoice();
+      // }
+
+      function makeRandomComputerChoice() {
+        const cum_guess_arr = ["rock", "paper", "scissors"];
+        const randomNum = Math.floor(Math.random() * 3);
+        cumChoice = cum_guess_arr[randomNum];
+        showAnimations();
+      }
+
+      function showAnimations() {
+        player1.classList.add("shake");
+        player2.classList.add("shake");
+      }
+
+      function handAnimEnded() {
+        console.log("Hand animation ended");
+        player1.classList.remove("shake");
+        player2.classList.remove("shake");
+
+        if (userChoice === "rock") {
+          player1.classList.add("rock");
+        } else if (userChoice === "paper") {
+          player1.classList.add("paper");
+        } else {
+          player1.classList.add("scissors");
+        }
+
+        if (cumChoice === "rock") {
+          player2.classList.add("rock");
+        } else if (cumChoice === "paper") {
+          player2.classList.add("paper");
+        } else {
+          player2.classList.add("scissors");
+        }
+        evaluateWin();
+      }
+      function evaluateWin() {
+        let result;
+        if (userChoice === "rock") {
+          if (cumChoice === "rock") {
+            result = "draw";
+          } else if (cumChoice === "paper") {
+            result = "lose";
+          } else {
+            result = "win";
+          }
+        } else if (userChoice === "paper") {
+          if (cumChoice === "paper") {
+            result = "draw";
+          } else if (cumChoice === "rock") {
+            result = "win";
+          } else {
+            result = "lose";
+          }
+        } else {
+          if (cumChoice === "scissors") {
+            result = "draw";
+          } else if (cumChoice === "paper") {
+            result = "win";
+          } else {
+            result = "lose";
+          }
+        }
+        showScreen();
+      }
+
+      function showScreen() {
+        let result;
+        if (result === "draw") {
+          draw.classList.remove("hidden");
+        } else if (result === "win") {
+          win.classList.remove("hidden");
+        } else {
+          lose.classList.remove("hidden");
+        }
+        gameReset();
+      }
+
+      function gameReset() {}
+    </script>
+  </body>
+</html>
